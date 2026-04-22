@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>광고랑 — 종합 옥외광고 대행사</title>
+<meta name="description" content="광고랑 — 오프라인에서 브랜드를 움직이는 종합광고대행사."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{
+  bg:'#FFFFFF',bg2:'#F7F6F3',
+  ink:'#111111',ink2:'#333333',
+  sub:'#777777',sub2:'#AAAAAA',
+  line:'#E5E5E5',line2:'#D5D5D5',
+  accent:'#B07040',accentbg:'#F9F1EB'
+},fontFamily:{
+  serif:['"Noto Serif KR"','serif'],
+  sans:['"Pretendard Variable"','Pretendard','sans-serif'],
+}}}}
+</script>
+<style>
+html{scroll-behavior:smooth}
+body{background:#fff;color:#111;font-family:'Pretendard Variable',Pretendard,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:17px;line-height:1.7}
+
+.kserif{font-family:'Noto Serif KR',serif;letter-spacing:-.03em;font-weight:700}
+
+/* ---- Buttons ---- */
+.btn-fill{background:#B07040;color:#fff;font-weight:600;transition:background .3s}
+.btn-fill:hover{background:#8E5A32}
+.btn-line{border:2px solid #111;color:#111;font-weight:600;transition:all .3s}
+.btn-line:hover{background:#111;color:#fff}
+
+/* ---- Animations ---- */
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.rise{animation:rise 1s ease both}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee{display:flex;width:max-content;animation:slide 50s linear infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes modal-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-in{animation:modal-in .4s ease both}
+
+/* ---- Media card ---- */
+.mc{border:1px solid #E5E5E5;padding:2rem;transition:all .3s;cursor:pointer;background:#fff;text-align:left}
+.mc:hover{border-color:#B07040;background:#F9F1EB}
+.mc:hover .mc-t{color:#B07040}
+.mc .mc-arr{opacity:0;transition:all .3s;color:#B07040}
+.mc:hover .mc-arr{opacity:1}
+
+/* ---- Process row ---- */
+.proc{border-top:1px solid #E5E5E5;transition:background .3s}
+.proc:last-child{border-bottom:1px solid #E5E5E5}
+.proc:hover{background:#F7F6F3}
+
+/* ---- Form ---- */
+.field{background:#F7F6F3;border:1px solid #E5E5E5;border-radius:8px;padding:14px 16px;color:#111;width:100%;font-size:16px;transition:border-color .3s}
+.field:focus{outline:none;border-color:#B07040;background:#fff}
+.field::placeholder{color:#AAA}
+select.field{appearance:auto}
+
+/* ---- Modal ---- */
+.modal-bg{background:rgba(0,0,0,.35);backdrop-filter:blur(12px)}
+.modal-p{background:#fff;border-radius:12px;box-shadow:0 24px 80px rgba(0,0,0,.15)}
+
+/* ---- Brand cell ---- */
+.brand-c{border:1px solid #E5E5E5;aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;padding:1.5rem;transition:all .3s;background:#fff}
+.brand-c:hover{background:#F9F1EB;border-color:#B07040}
+.brand-c .bn{font-family:'Noto Serif KR',serif;font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:600;color:#333;transition:color .3s}
+.brand-c:hover .bn{color:#B07040}
+
+/* ---- Case card ---- */
+.case-c{border:1px solid #E5E5E5;border-radius:12px;padding:2rem;transition:all .3s;background:#fff}
+.case-c:hover{border-color:#B07040;box-shadow:0 8px 30px rgba(176,112,64,.08)}
+
+/* Hero image */
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,.7) 50%,#fff 92%)}
+.hero-img::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0%,transparent 20%,transparent 80%,#fff 100%);z-index:1}
+
+/* Marquee strip */
+.strip{border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5;overflow:hidden;padding:1rem 0;background:#F7F6F3}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur-lg border-b border-line">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8 h-16 md:h-[68px] flex items-center justify-between">
+  <a href="#home" class="flex items-center gap-2">
+    <span class="w-2.5 h-2.5 rounded-full bg-accent pulse"></span>
+    <span class="kserif text-xl md:text-2xl text-ink">광고랑</span>
+  </a>
+  <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium text-ink2">
+    <a href="#about" class="hover:text-accent transition-colors">소개</a>
+    <a href="#media" class="hover:text-accent transition-colors">보유매체</a>
+    <a href="#work" class="hover:text-accent transition-colors">실적</a>
+    <a href="#process" class="hover:text-accent transition-colors">진행과정</a>
+    <a href="#contact" class="hover:text-accent transition-colors">문의</a>
+  </nav>
+  <a href="#contact" class="hidden md:inline-flex btn-fill px-5 py-2.5 rounded-full text-sm">무료 상담</a>
+  <button id="menuBtn" class="md:hidden" aria-label="menu">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 17h16"/></svg>
+  </button>
+</div>
+<div id="mobileMenu" class="hidden md:hidden bg-white border-t border-line">
+  <div class="px-5 py-4 space-y-3 text-lg font-medium">
+    <a href="#about" class="block py-1">소개</a>
+    <a href="#media" class="block py-1">보유매체</a>
+    <a href="#work" class="block py-1">실적</a>
+    <a href="#process" class="block py-1">진행과정</a>
+    <a href="#contact" class="block py-1">문의</a>
+  </div>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-[90vh] md:min-h-screen pt-[68px] flex flex-col">
+<div class="absolute inset-0 hero-img">
+  <img src="https://i.ibb.co/x82sgxWW/IMG-4375.jpg" alt="광고랑 옥외광고" class="w-full h-full object-cover object-center" loading="eager"/>
+</div>
+
+<div class="relative z-10 flex-1 flex items-end pb-12 md:pb-20">
+<div class="max-w-[1200px] w-full mx-auto px-5 md:px-8">
+
+  <p class="text-accent font-semibold text-sm md:text-base tracking-wide mb-4 rise" style="animation-delay:.1s">2004년 설립 · 종합 옥외광고 대행사</p>
+
+  <h1 class="kserif text-[11vw] md:text-[7vw] lg:text-[96px] text-ink leading-[1.05] mb-6 rise" style="animation-delay:.2s">
+    오프라인에서<br/>브랜드를 움직이다.
+  </h1>
+
+  <p class="text-ink2 text-lg md:text-xl leading-relaxed max-w-xl mb-10 rise" style="animation-delay:.35s">
+    시장조사부터 매체 집행, 성과 분석까지<br class="hidden md:block"/>
+    <strong class="text-ink">한 번에, 광고랑.</strong>
+  </p>
+
+  <div class="flex flex-col sm:flex-row gap-3 rise" style="animation-delay:.5s">
+    <a href="#contact" class="btn-fill inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base">
+      무료 상담 신청
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+    <a href="#media" class="btn-line inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base">
+      보유 매체 보기
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Marquee -->
+<div class="strip">
+<div class="marquee kserif text-2xl md:text-4xl text-ink/20 whitespace-nowrap">
+<span class="px-6">전광판</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">아파트 영상</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">지하철</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">버스</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">택시</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">극장</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">공항</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">경기장</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">전광판</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">아파트 영상</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">지하철</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">버스</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">택시</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">극장</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">공항</span><span class="px-4 text-sub2">·</span>
+<span class="px-6">경기장</span><span class="px-4 text-sub2">·</span>
+</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 md:py-32">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8">
+
+  <p class="text-accent font-semibold text-sm tracking-wide mb-3">ABOUT</p>
+  <h2 class="kserif text-4xl md:text-6xl text-ink mb-10">광고랑은,</h2>
+
+  <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+    <div>
+      <p class="text-ink2 text-lg md:text-xl leading-[1.8]">
+        꼼꼼한 <strong class="text-ink">시장조사</strong>와 <strong class="text-ink">소비자 분석</strong>으로 차별화된 광고 전략을 수립합니다.
+        온·오프라인을 아우르는 풀 미디어 솔루션을 제공하는 종합광고대행사입니다.
+      </p>
+    </div>
+    <div class="relative overflow-hidden rounded-xl">
+      <img src="https://i.ibb.co/7JtxqWcx/IMG-4376.jpg" alt="광고랑 옥외광고 매체" class="w-full h-auto object-cover rounded-xl" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 mt-16 pt-10 border-t border-line">
+    <div class="text-center md:text-left">
+      <div class="kserif text-4xl md:text-5xl text-accent">22년</div>
+      <div class="text-sub text-sm md:text-base mt-2">업력</div>
+    </div>
+    <div class="text-center md:text-left">
+      <div class="kserif text-4xl md:text-5xl text-accent">15개</div>
+      <div class="text-sub text-sm md:text-base mt-2">보유 매체</div>
+    </div>
+    <div class="text-center md:text-left">
+      <div class="kserif text-4xl md:text-5xl text-accent">120+</div>
+      <div class="text-sub text-sm md:text-base mt-2">누적 캠페인</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- MEDIA -->
+<section id="media" class="py-20 md:py-32 bg-bg2">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8">
+
+  <p class="text-accent font-semibold text-sm tracking-wide mb-3">OWNED MEDIA</p>
+  <h2 class="kserif text-4xl md:text-6xl text-ink mb-4">보유 광고매체</h2>
+  <p class="text-sub text-base md:text-lg mb-12 max-w-xl">광고랑이 직접 운영하는 15개 채널. 카드를 클릭하면 상세 정보를 확인할 수 있습니다.</p>
+
+  <div id="mediaGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"></div>
+</div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="py-20 md:py-32">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8">
+
+  <p class="text-accent font-semibold text-sm tracking-wide mb-3">SELECTED WORK</p>
+  <h2 class="kserif text-4xl md:text-6xl text-ink mb-12">함께한 브랜드</h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-20">
+    <div class="brand-c rounded-lg"><span class="bn">Hyundai</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">Starbucks</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">MUSINSA</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">Samsung</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">Olive Young</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">Toss</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">CGV</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">E-MART</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">Kia</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">SKT</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">BBQ</span></div>
+    <div class="brand-c rounded-lg"><span class="bn">Nike KR</span></div>
+  </div>
+
+  <p class="text-accent font-semibold text-sm tracking-wide mb-6">CASE STUDIES</p>
+  <div class="grid md:grid-cols-3 gap-4">
+    <article class="case-c">
+      <span class="inline-block text-xs font-bold text-accent bg-accentbg px-3 py-1 rounded-full mb-6">AUTO</span>
+      <h3 class="kserif text-2xl text-ink mb-2">자동차 브랜드 런칭</h3>
+      <p class="text-sub text-sm leading-relaxed mb-6">서울 주요 고차로 전광판 50개소 동시 송출</p>
+      <div class="grid grid-cols-2 gap-4 pt-5 border-t border-line">
+        <div><div class="text-sub text-xs mb-1">전시장 방문</div><div class="kserif text-2xl text-accent">+35%</div></div>
+        <div><div class="text-sub text-xs mb-1">시승 신청</div><div class="kserif text-2xl text-accent">+42%</div></div>
+      </div>
+    </article>
+    <article class="case-c">
+      <span class="inline-block text-xs font-bold text-accent bg-accentbg px-3 py-1 rounded-full mb-6">BEAUTY</span>
+      <h3 class="kserif text-2xl text-ink mb-2">뷰티 브랜드 리브랜딩</h3>
+      <p class="text-sub text-sm leading-relaxed mb-6">지하철·버스·셀터 통합 캠페인</p>
+      <div class="grid grid-cols-2 gap-4 pt-5 border-t border-line">
+        <div><div class="text-sub text-xs mb-1">브랜드 검색</div><div class="kserif text-2xl text-accent">+128%</div></div>
+        <div><div class="text-sub text-xs mb-1">매출 성장</div><div class="kserif text-2xl text-accent">+57%</div></div>
+      </div>
+    </article>
+    <article class="case-c">
+      <span class="inline-block text-xs font-bold text-accent bg-accentbg px-3 py-1 rounded-full mb-6">F&B</span>
+      <h3 class="kserif text-2xl text-ink mb-2">F&B 신메뉴 론칭</h3>
+      <p class="text-sub text-sm leading-relaxed mb-6">아파트 영상·오피스보드 동시 집행</p>
+      <div class="grid grid-cols-2 gap-4 pt-5 border-t border-line">
+        <div><div class="text-sub text-xs mb-1">매장 방문</div><div class="kserif text-2xl text-accent">+89%</div></div>
+        <div><div class="text-sub text-xs mb-1">신메뉴 판매</div><div class="kserif text-2xl text-accent">+214%</div></div>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="py-20 md:py-32 bg-bg2">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8">
+
+  <p class="text-accent font-semibold text-sm tracking-wide mb-3">WORKFLOW</p>
+  <h2 class="kserif text-4xl md:text-6xl text-ink mb-12">진행 과정</h2>
+
+  <div class="grid md:grid-cols-4 gap-4">
+    <div class="bg-white rounded-xl p-6 md:p-8 border border-line">
+      <div class="w-12 h-12 rounded-full bg-accentbg flex items-center justify-center mb-5">
+        <span class="kserif text-xl text-accent">01</span>
+      </div>
+      <h3 class="text-ink font-bold text-lg mb-2">시장 분석</h3>
+      <p class="text-sub text-sm leading-relaxed">타겟 오디언스, 경쟁사, 트렌드를 면밀히 조사합니다.</p>
+    </div>
+    <div class="bg-white rounded-xl p-6 md:p-8 border border-line">
+      <div class="w-12 h-12 rounded-full bg-accentbg flex items-center justify-center mb-5">
+        <span class="kserif text-xl text-accent">02</span>
+      </div>
+      <h3 class="text-ink font-bold text-lg mb-2">전략 수립</h3>
+      <p class="text-sub text-sm leading-relaxed">데이터 기반 최적 매체 믹스와 방향성을 설계합니다.</p>
+    </div>
+    <div class="bg-white rounded-xl p-6 md:p-8 border border-line">
+      <div class="w-12 h-12 rounded-full bg-accentbg flex items-center justify-center mb-5">
+        <span class="kserif text-xl text-accent">03</span>
+      </div>
+      <h3 class="text-ink font-bold text-lg mb-2">캠페인 실행</h3>
+      <p class="text-sub text-sm leading-relaxed">전국 매체 네트워크를 활용한 정확한 집행.</p>
+    </div>
+    <div class="bg-white rounded-xl p-6 md:p-8 border border-line">
+      <div class="w-12 h-12 rounded-full bg-accentbg flex items-center justify-center mb-5">
+        <span class="kserif text-xl text-accent">04</span>
+      </div>
+      <h3 class="text-ink font-bold text-lg mb-2">성과 분석</h3>
+      <p class="text-sub text-sm leading-relaxed">노출·도달·전환 데이터를 투명하게 리포팅합니다.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 md:py-32">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8">
+
+  <p class="text-accent font-semibold text-sm tracking-wide mb-3">CONTACT</p>
+  <h2 class="kserif text-4xl md:text-6xl text-ink mb-4">지금 바로 문의하세요</h2>
+  <p class="text-sub text-base md:text-lg mb-12 max-w-xl">캠페인 목적, 희망 매체, 예산 등 자유롭게 문의해 주시면 빠르게 답변드리겠습니다.</p>
+
+  <div class="grid md:grid-cols-5 gap-10 md:gap-16">
+    <form action="https://formspree.io/f/xjgjajyo" method="POST" class="md:col-span-3 space-y-5">
+      <input type="hidden" name="_subject" value="[광고랑] 새로운 문의가 접수되었습니다"/>
+      <input type="hidden" name="_next" value="https://adlang.net"/>
+      <div>
+        <label class="block text-ink font-semibold text-sm mb-2">이름</label>
+        <input required type="text" name="name" class="field" placeholder="홍길동"/>
+      </div>
+      <div>
+        <label class="block text-ink font-semibold text-sm mb-2">연락처</label>
+        <input required type="tel" name="phone" class="field" placeholder="010-0000-0000"/>
+      </div>
+      <div>
+        <label class="block text-ink font-semibold text-sm mb-2">예산범위</label>
+        <select name="budget" class="field"><option>500만원 미만</option><option>500 — 1,000만원</option><option>1,000 — 3,000만원</option><option>3,000 — 5,000만원</option><option>5,000만원 이상</option></select>
+      </div>
+      <div>
+        <label class="block text-ink font-semibold text-sm mb-2">문의내용</label>
+        <textarea required rows="5" name="message" class="field resize-none" placeholder="캠페인 목적, 희망 매체, 집행 시기 등을 작성해주세요."></textarea>
+      </div>
+      <button type="submit" class="btn-fill w-full md:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full text-base mt-2">
+        무료 상담 신청하기
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </button>
+    </form>
+
+    <div class="md:col-span-2 space-y-8">
+      <div class="bg-bg2 rounded-xl p-6">
+        <p class="text-sub text-xs font-semibold mb-3 tracking-wider uppercase">전화</p>
+        <a href="tel:01032977736" class="kserif text-2xl md:text-3xl text-ink hover:text-accent transition-colors block">010-3297-7736</a>
+      </div>
+      <div class="bg-bg2 rounded-xl p-6">
+        <p class="text-sub text-xs font-semibold mb-3 tracking-wider uppercase">이메일</p>
+        <a href="mailto:adlang@daum.net" class="text-lg font-semibold text-ink hover:text-accent transition-colors block">adlang@daum.net</a>
+      </div>
+      <div class="bg-bg2 rounded-xl p-6">
+        <p class="text-sub text-xs font-semibold mb-3 tracking-wider uppercase">주소</p>
+        <p class="text-ink text-base leading-relaxed">서울시 영등포구 대림동<br/>719-1 삼전빌딩 307호</p>
+      </div>
+      <div class="pt-4 space-y-2 text-sm text-sub">
+        <div class="flex justify-between"><span>대표이사</span><span class="text-ink font-medium">오태근</span></div>
+        <div class="flex justify-between"><span>설립일</span><span class="text-ink font-medium">2004년 2월 3일</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink text-white/80 py-12">
+<div class="max-w-[1200px] mx-auto px-5 md:px-8">
+  <div class="grid md:grid-cols-3 gap-8 mb-10">
+    <div>
+      <div class="kserif text-2xl text-white mb-3">광고랑</div>
+      <p class="text-white/50 text-sm">오프라인에서 브랜드를 움직입니다.</p>
+    </div>
+    <div class="text-sm leading-relaxed text-white/60">
+      대표이사 오태근<br/>
+      설립 2004년 2월 3일<br/>
+      서울시 영등포구 대림동 719-1 삼전빌딩 307호
+    </div>
+    <div class="text-sm leading-relaxed text-white/60">
+      Tel. 010-3297-7736<br/>
+      Email. adlang@daum.net
+    </div>
+  </div>
+  <div class="pt-8 border-t border-white/10 text-xs text-white/40">
+    © 2026 광고랑. 모든 권리 보유.
+  </div>
+</div>
+</footer>
+
+<!-- MODAL -->
+<div id="mediaModal" class="hidden fixed inset-0 z-50 modal-bg items-center justify-center p-4 md:p-8">
+<div class="modal-p modal-in relative max-w-3xl w-full max-h-[92vh] overflow-y-auto">
+<div class="sticky top-0 bg-white/95 backdrop-blur border-b border-line px-6 md:px-8 py-4 flex items-center justify-between z-10 rounded-t-xl">
+  <div class="flex items-baseline gap-3">
+    <span id="m-num" class="text-sm font-bold text-accent"></span>
+    <span id="m-title" class="kserif text-xl md:text-2xl text-ink"></span>
+    <span id="m-en" class="text-xs text-sub hidden md:inline"></span>
+  </div>
+  <button id="closeModal" class="w-9 h-9 flex items-center justify-center rounded-lg border border-line hover:bg-accentbg hover:border-accent transition" aria-label="닫기">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+</div>
+<div class="px-6 md:px-8 py-8 space-y-8">
+
+  <div>
+    <p class="text-xs font-bold text-accent tracking-wider uppercase mb-2">타겟</p>
+    <p id="m-target" class="text-ink text-lg md:text-xl font-medium"></p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 p-5 bg-bg2 rounded-xl">
+    <div><p class="text-xs text-sub mb-1" id="r1l"></p><p id="r1v" class="text-ink font-semibold text-base"></p></div>
+    <div><p class="text-xs text-sub mb-1" id="r2l"></p><p id="r2v" class="text-ink font-semibold text-base"></p></div>
+    <div><p class="text-xs text-sub mb-1" id="r3l"></p><p id="r3v" class="kserif text-2xl text-accent"></p></div>
+    <div><p class="text-xs text-sub mb-1" id="r4l"></p><p id="r4v" class="kserif text-2xl text-accent"></p></div>
+  </div>
+
+  <div>
+    <p class="text-xs font-bold text-accent tracking-wider uppercase mb-3">광고 포맷</p>
+    <div id="m-fmt" class="space-y-0"></div>
+  </div>
+
+  <div>
+    <p class="text-xs font-bold text-accent tracking-wider uppercase mb-3">평균 단가</p>
+    <div id="m-prc" class="border-t border-line"></div>
+  </div>
+
+  <div class="bg-accentbg rounded-xl p-5 md:p-6">
+    <p class="text-xs font-bold text-accent tracking-wider uppercase mb-3">실제 집행 사례</p>
+    <p id="m-ct" class="kserif text-xl text-ink mb-1"></p>
+    <p id="m-cd" class="text-sub text-sm mb-5"></p>
+    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-accent/20">
+      <div><p class="text-xs text-sub mb-1" id="cs1l"></p><p id="cs1v" class="kserif text-3xl md:text-4xl text-accent"></p></div>
+      <div><p class="text-xs text-sub mb-1" id="cs2l"></p><p id="cs2v" class="kserif text-3xl md:text-4xl text-accent"></p></div>
+    </div>
+  </div>
+
+  <a href="#contact" data-close-modal class="btn-fill flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base w-full">
+    이 매체로 문의하기
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+  </a>
+</div>
+</div>
+</div>
+
+<script>
+const M=[
+{ko:'전광판',en:'LED BILLBOARD',target:'20~50대 운전자, 보행자, 일반 대중',reach:[['전광판 위치','서울 주요 고차로 50개소'],['평균 체류시간','1~3분'],['일 노출','약 300만 명'],['월 노출','약 9,000만 명']],format:['15초 동영상 광고','30초 동영상 광고','정적 이미지 광고','실시간 데이터 연동 광고'],price:[['15초 광고 (월간)','500~1,000만원'],['30초 광고 (월간)','800~1,500만원'],['프라임 타임 (저녁)','1,000~2,000만원'],['패키지 (3개월)','2,000~4,500만원']],ct:'자동차 브랜드 캠페인',cd:'전광판 광고 집행 후 측정된 성과',cs:[['전시장 방문','+35%'],['시승 신청','+42%']]},
+{ko:'아파트 영상',en:'APARTMENT',target:'30~60대 가정주부, 직장인, 거주자',reach:[['설치 단지','전국 5,000+ 단지'],['평균 노출','엘리베이터 30~60초'],['일 노출','약 450만 명'],['월 노출','약 1.3억 명']],format:['15초 영상','30초 영상','브랜드 시리즈','시즌 캠페인'],price:[['15초 (월)','300~600만원'],['30초 (월)','500~900만원'],['프리미엄 단지','800~1,500만원'],['전국 3개월','1,500~3,000만원']],ct:'생활용품 브랜드',cd:'아파트 엘리베이터 영상 집행',cs:[['브랜드 인지도','+62%'],['온라인 구매','+48%']]},
+{ko:'오피스보드 영상',en:'OFFICE BOARD',target:'20~40대 직장인, 의사결정권자',reach:[['설치 빌딩','수도권 800+ 빌딩'],['평균 노출','30~90초'],['일 노출','약 180만 명'],['월 노출','약 5,400만 명']],format:['15초 영상','30초 영상','B2B 타겟','커리어 캠페인'],price:[['15초 (월)','350~700만원'],['30초 (월)','600~1,100만원'],['프라임 빌딩','1,000~1,800만원'],['전국 3개월','1,800~3,500만원']],ct:'B2B SaaS 솔루션',cd:'오피스보드 영상 캠페인',cs:[['데모 신청','+87%'],['리드 전환','+53%']]},
+{ko:'지하철 광고',en:'SUBWAY',target:'10~60대 통근자, 학생, 도심 인구',reach:[['적용 노선','서울 1~9호선 전 노선'],['주요 역사','강남, 홍대, 신촌 등'],['일 이용객','약 700만 명'],['월 노출','약 2.1억 명']],format:['스크린도어 광고','디지털 사이니지','래핑 광고','역사 내 포스터'],price:[['스크린도어 (월)','400~900만원'],['디지털 사이니지','600~1,200만원'],['역사 래핑','1,500~3,000만원'],['3개월 패키지','2,500~5,500만원']],ct:'패션 브랜드 론칭',cd:'주요 환승역 통합 캠페인',cs:[['매장 방문','+72%'],['앱 다운로드','+95%']]},
+{ko:'버스 광고',en:'BUS',target:'전 연령층 일반 대중, 보행자',reach:[['운행 지역','서울 및 수도권 전역'],['일 운행','평균 16시간'],['일 노출','약 380만 명'],['월 노출','약 1.1억 명']],format:['외부 래핑 광고','후면 광고','내부 LCD 광고','노선 패키지'],price:[['외부 래핑 (월/대)','200~500만원'],['후면 광고 (월/대)','150~300만원'],['내부 LCD','300~600만원'],['노선 3개월','1,200~3,000만원']],ct:'음료 브랜드 여름 캠페인',cd:'강남/홍대 노선 외부 래핑',cs:[['브랜드 회상률','+44%'],['매출 성장','+38%']]},
+{ko:'셀터 광고',en:'SHELTER',target:'버스 이용객, 도심 보행자',reach:[['설치 위치','서울 정류장 1,200곳'],['평균 대기','5~10분'],['일 노출','약 220만 명'],['월 노출','약 6,600만 명']],format:['백라이트 포스터','디지털 사이니지','인터랙티브 셀터','시즌 패키지'],price:[['포스터 (2주)','120~250만원'],['디지털 사이니지','300~600만원'],['프리미엄 위치','500~1,000만원'],['전 노선','1,500~3,500만원']],ct:'스트리밍 서비스 신작',cd:'강남대로 셀터 통합 캠페인',cs:[['앱 가입','+118%'],['시청 시간','+67%']]},
+{ko:'택시 광고',en:'TAXI',target:'비즈니스객, 관광객, 야간 이동 인구',reach:[['운행 차량','서울 8,000+ 대'],['일 운행','250km / 차량'],['일 노출','약 160만 명'],['월 노출','약 4,800만 명']],format:['지붕 LED','뒷좌석 모니터','도어 래핑','GPS 타겟팅'],price:[['지붕 LED (월)','180~400만원'],['뒷좌석 모니터','250~500만원'],['도어 래핑','300~700만원'],['타겟팅 패키지','1,000~2,500만원']],ct:'핀테크 앱 마케팅',cd:'강남/광화문 택시 LED',cs:[['앱 설치','+92%'],['신규 가입','+71%']]},
+{ko:'극장광고',en:'CINEMA',target:'10~40대 영화 관람객',reach:[['전국 극장','350+ 상영관'],['평균 관람객','80~200명'],['주간 노출','약 120만 명'],['월 노출','약 480만 명']],format:['상영 전 영상','로비 사이니지','시사회 협찬','IMAX 패키지'],price:[['15초 (주간)','500~1,000만원'],['30초 (주간)','800~1,500만원'],['로비 사이니지','300~700만원'],['전국 (월)','2,000~5,000만원']],ct:'게임 신작 론칭',cd:'CGV/메가박스 통합 영상',cs:[['사전예약','+156%'],['브랜드 검색','+103%']]},
+{ko:'공항 광고',en:'AIRPORT',target:'비즈니스 출장객, 여행객, 고소득층',reach:[['주요 공항','인천/김포/제주'],['평균 체류','2~4시간'],['일 이용객','약 50만 명'],['월 노출','약 1,500만 명']],format:['디지털 사이니지','대형 백라이트','게이트 광고','면세 구역'],price:[['사이니지 (월)','800~2,000만원'],['대형 백라이트','1,200~3,000만원'],['게이트 광고','1,500~4,000만원'],['프리미엄 패키지','3,000~8,000만원']],ct:'럭셔리 브랜드',cd:'인천공항 면세구역 통합',cs:[['브랜드 인지도','+58%'],['면세 구매','+44%']]},
+{ko:'터미널 광고',en:'TERMINAL',target:'지방 출장객, 관광객, 가족 이동객',reach:[['전국 터미널','주요 50+ 터미널'],['평균 체류','30분~1시간'],['일 이용객','약 120만 명'],['월 노출','약 3,600만 명']],format:['디지털 사이니지','대합실 포스터','플랫폼 광고','전국 패키지'],price:[['사이니지 (월)','300~700만원'],['대합실 포스터','200~500만원'],['플랫폼 광고','400~800만원'],['전국 3개월','1,500~3,500만원']],ct:'여행 플랫폼',cd:'주요 터미널 디지털 광고',cs:[['앱 가입','+76%'],['예약 전환','+52%']]},
+{ko:'마트 광고',en:'MART',target:'30~60대 주부, 가족 쇼핑객',reach:[['전국 매장','대형마트 300+ 점포'],['평균 체류','1~2시간'],['일 방문','약 200만 명'],['월 노출','약 6,000만 명']],format:['카트 광고','매대 사이니지','계산대 LCD','입구 디지털 보드'],price:[['카트 광고 (월)','150~350만원'],['매대 사이니지','250~500만원'],['계산대 LCD','400~800만원'],['전 매장 패키지','1,500~4,000만원']],ct:'식품 신제품 출시',cd:'대형마트 통합 매장 광고',cs:[['매장 판매','+134%'],['재구매율','+62%']]},
+{ko:'경기장 광고',en:'STADIUM',target:'20~50대 스포츠 팬, 가족 관람객',reach:[['주요 경기장','프로야구/축구 30+ 구장'],['평균 관람','1~3시간'],['경기당 관중','1~5만 명'],['시즌 노출','약 5,000만 명']],format:['전광판 영상','LED 펜스 광고','관람석 사이니지','중계 노출'],price:[['LED 펜스 (경기당)','300~800만원'],['전광판 영상','500~1,200만원'],['관람석 광고','400~900만원'],['시즌 패키지','3,000만원~1.2억']],ct:'스포츠 음료 브랜드',cd:'프로야구 시즌 LED 펜스',cs:[['브랜드 회상률','+89%'],['편의점 매출','+55%']]},
+{ko:'팬클럽 광고',en:'FANCLUB',target:'10~30대 K-pop 팬, 셀럽 팬덤',reach:[['주요 거점','강남/홍대/명동/잠실'],['집중 노출','데뷔/생일/컴백'],['SNS 확산','50만+ 도달'],['이벤트 노출','100만+ 도달']],format:['지하철 응원광고','버스 래핑 광고','카페 LED','커피차/푸드트럭'],price:[['지하철 (2주)','300~800만원'],['버스 래핑 (월)','500~1,200만원'],['카페 LED','200~500만원'],['종합 패키지','1,000~3,000만원']],ct:'아이돌 데뷔 축하',cd:'강남/홍대 통합 팬덤 광고',cs:[['SNS 언급','+285%'],['앨범 판매','+92%']]},
+{ko:'로컬 광고',en:'LOCAL',target:'특정 지역 거주민, 자영업자',reach:[['커버 지역','동 단위 정밀 타겟팅'],['집행 방식','맞춤형 매체 믹스'],['지역 도달','5~30만 명'],['월 노출','500만+ 명']],format:['상가 LED 보드','아파트 게시판','지역 셀터','커뮤니티 사이니지'],price:[['상가 LED (월)','80~250만원'],['아파트 게시판','50~150만원'],['지역 셀터','120~300만원'],['로컬 3개월','500~1,500만원']],ct:'신규 의료기관 오픈',cd:'반경 3km 정밀 타겟 캠페인',cs:[['신규 환자','+167%'],['지역 인지','+78%']]},
+{ko:'기타 광고',en:'OTHERS',target:'브랜드 목적에 따른 맞춤 타겟',reach:[['포함 매체','엘리베이터/주차장 등'],['집행 방식','브랜드 맞춤 설계'],['도달 범위','50만+ 명'],['월 노출','1,000만+ 명']],format:['엘리베이터 사이니지','주차장 광고','게임센터 영상','맞춤형 매체'],price:[['엘리베이터 (월)','100~300만원'],['주차장 광고','150~400만원'],['특수 매체','200~800만원'],['통합 패키지','800~2,500만원']],ct:'편의점 브랜드',cd:'복합 매체 통합 집행',cs:[['매장 방문','+62%'],['신상품 판매','+84%']]}
+];
+
+// Build grid
+const g=document.getElementById('mediaGrid');
+M.forEach((m,i)=>{
+const n=String(i+1).padStart(2,'0');
+const b=document.createElement('button');
+b.type='button';b.className='mc rounded-lg';
+b.innerHTML=`<div class="flex items-center justify-between mb-8"><span class="text-xs font-bold text-accent">${n}</span><svg class="mc-arr w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7m10 0v10"/></svg></div><div class="mc-t kserif text-2xl md:text-3xl text-ink leading-tight">${m.ko}</div><div class="mt-2 text-sm text-sub">${m.en}</div>`;
+b.addEventListener('click',()=>openM(i));g.appendChild(b)});
+
+// Modal
+const ml=document.getElementById('mediaModal'),mp=ml.querySelector('.modal-p');
+function openM(i){
+const m=M[i],n=String(i+1).padStart(2,'0');
+document.getElementById('m-num').textContent=n;
+document.getElementById('m-title').textContent=m.ko;
+document.getElementById('m-en').textContent=m.en;
+document.getElementById('m-target').textContent=m.target;
+['r1','r2','r3','r4'].forEach((k,j)=>{document.getElementById(k+'l').textContent=m.reach[j][0];document.getElementById(k+'v').textContent=m.reach[j][1]});
+document.getElementById('m-fmt').innerHTML=m.format.map((f,j)=>`<div class="flex items-center gap-3 py-3 ${j>0?'border-t border-line':''}"><span class="w-6 text-xs font-bold text-accent">${String(j+1).padStart(2,'0')}</span><span class="text-ink text-base">${f}</span></div>`).join('');
+document.getElementById('m-prc').innerHTML=m.price.map((p,j)=>`<div class="flex justify-between items-center py-3 border-b border-line"><span class="text-ink2 text-base">${p[0]}</span><span class="font-bold ${j===m.price.length-1?'text-accent':'text-ink'} text-base">${p[1]}</span></div>`).join('');
+document.getElementById('m-ct').textContent=m.ct;
+document.getElementById('m-cd').textContent=m.cd;
+document.getElementById('cs1l').textContent=m.cs[0][0];
+document.getElementById('cs1v').textContent=m.cs[0][1];
+document.getElementById('cs2l').textContent=m.cs[1][0];
+document.getElementById('cs2v').textContent=m.cs[1][1];
+ml.classList.remove('hidden');ml.classList.add('flex');
+mp.scrollTop=0;mp.classList.remove('modal-in');void mp.offsetWidth;mp.classList.add('modal-in');
+document.body.style.overflow='hidden'}
+
+function closeM(){ml.classList.add('hidden');ml.classList.remove('flex');document.body.style.overflow=''}
+document.getElementById('closeModal').addEventListener('click',closeM);
+document.querySelectorAll('[data-close-modal]').forEach(e=>e.addEventListener('click',closeM));
+ml.addEventListener('click',e=>{if(e.target===ml)closeM()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+document.getElementById('mobileMenu').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('hidden')));
+</script>
+</body>
+</html>
